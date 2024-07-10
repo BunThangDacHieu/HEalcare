@@ -5,6 +5,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { GoCheckCircleFill } from "react-icons/go";
 import { AiFillCloseCircle } from "react-icons/ai";
+import { TiDeleteOutline } from "react-icons/ti";
+import { MdAssignmentTurnedIn } from "react-icons/md";
+
 
 const Dashboard = () => {
   const [appointments, setAppointments] = useState([]);
@@ -37,6 +40,20 @@ const Dashboard = () => {
             ? { ...appointment, status }
             : appointment
         )
+      );
+      toast.success(data.message);
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
+  const handleDeleteAppointment = async (appointmentId) => {
+    try {
+      const { data } = await axios.delete(
+        `http://localhost:4000/api/v1/appointment/delete/${appointmentId}`,
+        { withCredentials: true }
+      );
+      setAppointments((prevAppointments) =>
+        prevAppointments.filter((appointment) => appointment._id !== appointmentId)
       );
       toast.success(data.message);
     } catch (error) {
@@ -90,6 +107,7 @@ const Dashboard = () => {
                 <th>Department</th>
                 <th>Status</th>
                 <th>Visited</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -126,6 +144,9 @@ const Dashboard = () => {
                         </select>
                       </td>
                       <td>{appointment.hasVisited === true ? <GoCheckCircleFill className="green"/> : <AiFillCloseCircle className="red"/>}</td>
+                      <TiDeleteOutline style={{width: "30px", height: "30px"}} onClick={() => handleDeleteAppointment(appointment._id)}>
+                          Delete
+                      </TiDeleteOutline>
                     </tr>
                   ))
                 : "No Appointments Found!"}

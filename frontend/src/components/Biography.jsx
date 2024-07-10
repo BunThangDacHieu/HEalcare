@@ -20,7 +20,8 @@ const Biography = ({imageUrl}) => {
             nesciunt laboriosam totam iusto!
           </p>
           <p>We are all in 2024!</p>
-          <p>We are working on a MERN STACK PROJECT.</p>
+          <p>We are working on a Electronic Health Record (EHR) System
+          </p>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
             assumenda exercitationem accusamus sit repellendus quo optio dolorum

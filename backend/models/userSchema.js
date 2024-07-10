@@ -51,7 +51,7 @@ const userSchema = new mongoose.Schema({
     required: [true, "User Role Required!"],
     enum: ["Patient", "Doctor", "Admin"],
   },
-  doctorDepartment:{
+  doctorDepartment: {
     type: String,
   },
   docAvatar: {
@@ -76,5 +76,7 @@ userSchema.methods.generateJsonWebToken = function () {
     expiresIn: process.env.JWT_EXPIRES,
   });
 };
+
+
 
 export const User = mongoose.model("User", userSchema);
