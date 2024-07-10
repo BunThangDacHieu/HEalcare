@@ -3,8 +3,6 @@ import validator from "validator";
 
 const medicineSchema = new mongoose.Schema({
   medicinecategoryid: {
-    // type: mongoose.Schema.Types.ObjectId,
-    // ref: 'MedicineCategory',
     type: Number,
     required: [true, "MedicineCategoryID is required!"],
   },
