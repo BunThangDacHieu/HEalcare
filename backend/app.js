@@ -8,13 +8,15 @@ import { errorMiddleware } from "./middlewares/error.js";
 import messageRouter from "./router/messageRouter.js";
 import userRouter from "./router/userRouter.js";
 import appointmentRouter from "./router/appointmentRouter.js";
-
+import medicineRouter from "./router/medicineRouter.js";
+import dotenv from 'dotenv'
 const app = express();
-config({ path: "./config.env" });
+
+dotenv.config({ path: 'config/config.env' });
 
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL_ONE, process.env.FRONTEND_URL_TWO],
+    origin: [process.env.FRONTEND_URL, process.env.DASHBOARD_URL],
     method: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
@@ -33,6 +35,7 @@ app.use(
 app.use("/api/v1/message", messageRouter);
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/appointment", appointmentRouter);
+app.use("/api/v1/medicines", medicineRouter)
 
 dbConnection();
 

@@ -1,3 +1,5 @@
+import dotenv from 'dotenv'
+dotenv.config({ path: 'config/config.env' });
 export const generateToken = (user, message, statusCode, res) => {
   const token = user.generateJsonWebToken();
   // Determine the cookie name based on the user's role
